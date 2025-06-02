@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Outlet } from 'react-router-dom';
 import { 
   HomeIcon, ClipboardDocumentListIcon, CalendarIcon, 
   Cog6ToothIcon, QuestionMarkCircleIcon, ChartBarIcon,
@@ -13,7 +13,7 @@ const sidebarItems = [
   { 
     title: 'MAIN MENU', 
     items: [
-      { name: 'Dashboard', path: '/', icon: HomeIcon },
+      { name: 'Dashboard', path: '/dashboard', icon: HomeIcon },
       { name: 'Tasks', path: '/tasks', icon: ClipboardDocumentListIcon },
       { name: 'Calendar', path: '/calendar', icon: CalendarIcon },
       { name: 'Settings', path: '/settings', icon: Cog6ToothIcon },
@@ -34,7 +34,7 @@ const sidebarItems = [
   }
 ];
 
-export default function Layout({ children }) {
+export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   
@@ -145,15 +145,13 @@ export default function Layout({ children }) {
               <button className="p-1 text-neutral-500 rounded-md hover:bg-neutral-100">
                 <BellIcon className="w-6 h-6" />
               </button>
-        
-              {/* User profile */}
             </div>
           </div>
         </header>
         
         {/* Main content */}
         <main className="flex-1 overflow-y-auto bg-neutral-50 p-4">
-          {children}
+          <Outlet />
         </main>
       </div>
     </div>

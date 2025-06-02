@@ -2,7 +2,9 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import EmployeeLayout from './components/EmployeeLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 import LandingPage from './pages/LandingPage';
+import HRLoginPage from './pages/HRLoginPage';
 import Dashboard from './pages/Dashboard';
 import PayrollPage from './pages/PayrollPage';
 import EmployeesPage from './pages/EmployeesPage';
@@ -21,9 +23,14 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/hr-login" element={<HRLoginPage />} />
       
       {/* HR Routes with Sidebar */}
-      <Route element={<Layout />}>
+      <Route element={
+        <ProtectedRoute requiredRole="hr">
+          <Layout />
+        </ProtectedRoute>
+      }>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tasks" element={<TasksPage />} />
         <Route path="/calendar" element={<CalendarPage />} />
@@ -40,7 +47,11 @@ function App() {
       {/* Employee Routes without Sidebar */}
       <Route element={<EmployeeLayout />}>
         <Route path="/employee-login" element={<EmployeeLoginPage />} />
-        <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
+        <Route path="/employee-dashboard" element={
+          <ProtectedRoute requiredRole="employee">
+            <EmployeeDashboard />
+          </ProtectedRoute>
+        } />
       </Route>
     </Routes>
   );

@@ -26,7 +26,7 @@ export default function LandingPage() {
 
         <div className="space-y-4">
           <button
-            onClick={() => navigate('/payrolls')}
+            onClick={() => navigate('/dashboard')}
             className="w-full bg-primary-600 text-white rounded-lg px-4 py-3 flex items-center justify-center hover:bg-primary-700 transition-colors"
           >
             <span className="text-lg font-medium">HR Login</span>

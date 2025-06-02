@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
+import EmployeeLayout from './components/EmployeeLayout';
 import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import PayrollPage from './pages/PayrollPage';
@@ -20,6 +21,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      
+      {/* HR Routes with Sidebar */}
       <Route element={<Layout />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tasks" element={<TasksPage />} />
@@ -31,9 +34,13 @@ function App() {
         <Route path="/invoices" element={<InvoicesPage />} />
         <Route path="/employees" element={<EmployeesPage />} />
         <Route path="/add-employee" element={<AddNewEmployeePage />} />
+        <Route path="/hiring" element={<HiringPage />} />
+      </Route>
+
+      {/* Employee Routes without Sidebar */}
+      <Route element={<EmployeeLayout />}>
         <Route path="/employee-login" element={<EmployeeLoginPage />} />
         <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
-        <Route path="/hiring" element={<HiringPage />} />
       </Route>
     </Routes>
   );

@@ -10,7 +10,7 @@ export default function ProtectedRoute({ children, requiredRole }) {
   }
 
   if (requiredRole === 'employee' && !isEmployeeAuthenticated) {
-    return <Navigate to="/employee-login" state={{ from: location }} replace />;
+    return <Navigate to="/employee-login\" state={{ from: location }} replace />;
   }
 
   return children;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../components/ui/Logo';
 
 export default function EmployeeLoginPage() {
   const navigate = useNavigate();
@@ -38,21 +39,25 @@ export default function EmployeeLoginPage() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-md mx-auto"
-    >
-      <div className="bg-white rounded-lg shadow-card p-8">
-        <h1 className="text-2xl font-semibold text-neutral-800 mb-6">Employee Login</h1>
-        
+    <div className="min-h-screen bg-neutral-50 flex flex-col items-center justify-center p-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-md bg-white rounded-lg shadow-card p-8"
+      >
+        <div className="text-center mb-8">
+          <Logo />
+          <h2 className="mt-6 text-2xl font-bold text-neutral-900">Employee Login</h2>
+          <p className="mt-2 text-neutral-600">Sign in to your employee account</p>
+        </div>
+
         {error && (
           <div className="mb-4 p-4 bg-error-50 text-error-700 rounded-md">
             {error}
           </div>
         )}
-        
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-neutral-700 mb-2">
@@ -66,7 +71,7 @@ export default function EmployeeLoginPage() {
               onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-neutral-700 mb-2">
               Password
@@ -79,15 +84,15 @@ export default function EmployeeLoginPage() {
               onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
             />
           </div>
-          
+
           <button
             type="submit"
-            className="w-full px-6 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="w-full bg-primary-600 text-white rounded-lg px-4 py-3 font-medium hover:bg-primary-700 transition-colors"
           >
-            Login
+            Sign In
           </button>
         </form>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

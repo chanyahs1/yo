@@ -29,6 +29,13 @@ export default function EmployeeDashboard() {
     navigate('/employee-login');
   };
 
+  // Mock performance data - in a real app, this would come from the database
+  const performanceMetrics = {
+    productivity: 92,
+    quality: 88,
+    teamwork: 90
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -57,6 +64,50 @@ export default function EmployeeDashboard() {
           <ArrowRightOnRectangleIcon className="w-5 h-5 mr-2" />
           Logout
         </button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div className="bg-white rounded-lg shadow-card p-6">
+          <h3 className="text-sm font-medium text-neutral-600 mb-2">Productivity</h3>
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-2xl font-bold text-neutral-900">{performanceMetrics.productivity}%</span>
+            <span className="text-sm text-success-600">↑ 3.2%</span>
+          </div>
+          <div className="w-full bg-neutral-200 rounded-full h-2">
+            <div 
+              className="bg-primary-500 h-2 rounded-full" 
+              style={{ width: `${performanceMetrics.productivity}%` }}
+            ></div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow-card p-6">
+          <h3 className="text-sm font-medium text-neutral-600 mb-2">Quality</h3>
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-2xl font-bold text-neutral-900">{performanceMetrics.quality}%</span>
+            <span className="text-sm text-success-600">↑ 2.1%</span>
+          </div>
+          <div className="w-full bg-neutral-200 rounded-full h-2">
+            <div 
+              className="bg-success-500 h-2 rounded-full" 
+              style={{ width: `${performanceMetrics.quality}%` }}
+            ></div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow-card p-6">
+          <h3 className="text-sm font-medium text-neutral-600 mb-2">Teamwork</h3>
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-2xl font-bold text-neutral-900">{performanceMetrics.teamwork}%</span>
+            <span className="text-sm text-success-600">↑ 1.8%</span>
+          </div>
+          <div className="w-full bg-neutral-200 rounded-full h-2">
+            <div 
+              className="bg-secondary-500 h-2 rounded-full" 
+              style={{ width: `${performanceMetrics.teamwork}%` }}
+            ></div>
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

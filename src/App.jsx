@@ -44,14 +44,19 @@ function App() {
         <Route path="/hiring" element={<HiringPage />} />
       </Route>
 
-      {/* Employee Routes without Sidebar */}
-      <Route element={<EmployeeLayout />}>
+      {/* Employee Routes with Sidebar */}
+      <Route element={
+        <ProtectedRoute requiredRole="employee">
+          <EmployeeLayout />
+        </ProtectedRoute>
+      }>
         <Route path="/employee-login" element={<EmployeeLoginPage />} />
-        <Route path="/employee-dashboard" element={
-          <ProtectedRoute requiredRole="employee">
-            <EmployeeDashboard />
-          </ProtectedRoute>
-        } />
+        <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
+        <Route path="/employee/attendance" element={<CalendarPage />} />
+        <Route path="/employee/salary" element={<PayrollPage />} />
+        <Route path="/employee/messages" element={<HelpCenterPage />} />
+        <Route path="/employee/tasks" element={<TasksPage />} />
+        <Route path="/employee/profile" element={<SettingsPage />} />
       </Route>
     </Routes>
   );

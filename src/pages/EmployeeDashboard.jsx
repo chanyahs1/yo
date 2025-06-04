@@ -1,13 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { 
-  CalendarIcon, 
-  ChatBubbleLeftIcon, 
-  ClockIcon, 
-  ArrowRightOnRectangleIcon,
-  BellIcon
-} from '@heroicons/react/24/outline';
+import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 
 export default function EmployeeDashboard() {
   const navigate = useNavigate();
@@ -34,21 +28,6 @@ export default function EmployeeDashboard() {
     localStorage.removeItem('currentEmployee');
     navigate('/employee-login');
   };
-
-  const messages = [
-    { from: 'HR', content: 'Your leave request has been approved', time: '2 hours ago' },
-    { from: 'Manager', content: 'Team meeting at 3 PM today', time: '4 hours ago' }
-  ];
-
-  const tasks = [
-    { title: 'Complete project documentation', deadline: '2024-01-20', status: 'Pending' },
-    { title: 'Review code changes', deadline: '2024-01-18', status: 'In Progress' }
-  ];
-
-  const upcomingTasks = [
-    { title: 'Team presentation', deadline: '2024-01-25', priority: 'High' },
-    { title: 'Client meeting', deadline: '2024-01-22', priority: 'Medium' }
-  ];
 
   return (
     <motion.div
@@ -80,7 +59,7 @@ export default function EmployeeDashboard() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Personal Info Card */}
         <div className="bg-white rounded-lg shadow-card p-6">
           <h2 className="text-lg font-semibold mb-4">Personal Information</h2>
@@ -108,98 +87,7 @@ export default function EmployeeDashboard() {
           </div>
         </div>
 
-        {/* Messages Card */}
-        <div className="bg-white rounded-lg shadow-card p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">Messages</h2>
-            <span className="flex h-6 w-6 items-center justify-center bg-primary-100 text-primary-600 text-sm font-medium rounded-full">
-              {messages.length}
-            </span>
-          </div>
-          <div className="space-y-4">
-            {messages.map((message, index) => (
-              <div key={index} className="flex items-start space-x-3 p-3 bg-neutral-50 rounded-lg">
-                <ChatBubbleLeftIcon className="w-5 h-5 text-primary-500 flex-shrink-0" />
-                <div>
-                  <div className="flex items-center space-x-2">
-                    <span className="font-medium text-sm">{message.from}</span>
-                    <span className="text-xs text-neutral-500">{message.time}</span>
-                  </div>
-                  <p className="text-sm text-neutral-600 mt-1">{message.content}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Calendar & Meetings */}
-        <div className="bg-white rounded-lg shadow-card p-6">
-          <h2 className="text-lg font-semibold mb-4">Upcoming Meetings</h2>
-          <div className="space-y-4">
-            <div className="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg">
-              <CalendarIcon className="w-5 h-5 text-primary-500" />
-              <div>
-                <p className="font-medium text-sm">Team Weekly Sync</p>
-                <p className="text-xs text-neutral-500">Today, 3:00 PM</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg">
-              <CalendarIcon className="w-5 h-5 text-primary-500" />
-              <div>
-                <p className="font-medium text-sm">Project Review</p>
-                <p className="text-xs text-neutral-500">Tomorrow, 11:00 AM</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Tasks */}
-        <div className="bg-white rounded-lg shadow-card p-6">
-          <h2 className="text-lg font-semibold mb-4">Current Tasks</h2>
-          <div className="space-y-4">
-            {tasks.map((task, index) => (
-              <div key={index} className="flex items-start space-x-3 p-3 bg-neutral-50 rounded-lg">
-                <ClockIcon className="w-5 h-5 text-warning-500 flex-shrink-0" />
-                <div>
-                  <p className="font-medium text-sm">{task.title}</p>
-                  <div className="flex items-center space-x-2 mt-1">
-                    <span className="text-xs text-neutral-500">Due: {task.deadline}</span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${
-                      task.status === 'Pending' ? 'bg-warning-100 text-warning-700' : 'bg-primary-100 text-primary-700'
-                    }`}>
-                      {task.status}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Upcoming Tasks */}
-        <div className="bg-white rounded-lg shadow-card p-6">
-          <h2 className="text-lg font-semibold mb-4">Upcoming Tasks</h2>
-          <div className="space-y-4">
-            {upcomingTasks.map((task, index) => (
-              <div key={index} className="flex items-start space-x-3 p-3 bg-neutral-50 rounded-lg">
-                <BellIcon className="w-5 h-5 text-primary-500 flex-shrink-0" />
-                <div>
-                  <p className="font-medium text-sm">{task.title}</p>
-                  <div className="flex items-center space-x-2 mt-1">
-                    <span className="text-xs text-neutral-500">Due: {task.deadline}</span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${
-                      task.priority === 'High' ? 'bg-error-100 text-error-700' : 'bg-warning-100 text-warning-700'
-                    }`}>
-                      {task.priority}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Attendance */}
+        {/* Attendance Overview */}
         <div className="bg-white rounded-lg shadow-card p-6">
           <h2 className="text-lg font-semibold mb-4">Attendance Overview</h2>
           <div className="space-y-4">
